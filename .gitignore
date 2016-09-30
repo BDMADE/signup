@@ -8,3 +8,5 @@ spec/signup_app/tmp/
 spec/signup_app/
 spec/
 
+.idea/vcs.xml
+.idea/
