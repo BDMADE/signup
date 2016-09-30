@@ -27,6 +27,7 @@ module Signup
       @user = User.new(user_params)
 
       if @user.save
+        log_in @user
         redirect_to @user, notice: 'User was successfully created.'
       else
         render :new
@@ -48,6 +49,15 @@ module Signup
       redirect_to users_url, notice: 'User was successfully destroyed.'
     end
 
+    # sign up page
+    def signup
+      if current_user.nil?
+        @user = User.new
+      else
+        redirect_to root_url ,alert: 'Already signed in !'
+      end
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_user
@@ -56,7 +66,19 @@ module Signup
 
       # Only allow a trusted parameter "white list" through.
       def user_params
-        params.require(:user).permit(:firstname, :lastname, :email, :password_digest, :remember_digest, :admin)
+        params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :admin)
       end
+    # it matches current user with database and prevents to edit/update other user profile
+    def match_user
+      if not admin?
+        user= User.find(current_user)
+
+        if not user.id==set_user.id
+          redirect_to admin_url,notice: 'You have not permission to grant this page !'
+        end
+      end
+
+    end
+
   end
 end
