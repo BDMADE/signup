@@ -9,6 +9,7 @@ class CreateSignupUsers < ActiveRecord::Migration[5.0]
       t.boolean :admin
 
       t.timestamps
+      t.index ['email'], name: 'index_users_on_email', unique: true
     end
   end
 end
