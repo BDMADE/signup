@@ -1,0 +1,10 @@
+.bundle/
+log/*.log
+pkg/
+spec/signup_app/db/*.sqlite3
+spec/signup_app/db/*.sqlite3-journal
+spec/signup_app/log/*.log
+spec/signup_app/tmp/
+spec/signup_app/
+spec/
+
