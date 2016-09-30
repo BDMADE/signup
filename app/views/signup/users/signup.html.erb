@@ -1,13 +1,13 @@
 <h1>Sign up</h1>
 
-<%= form_for(user) do |f| %>
+<%= form_for @user do |f| %>
 
-    <% if user.errors.any? %>
+    <% if @user.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
           <ul>
-            <% user.errors.full_messages.each do |message| %>
+            <% @user.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
             <% end %>
           </ul>
@@ -30,8 +30,13 @@
     </div>
 
     <div class="field">
-      <%= f.label :password_digest %>
-      <%= f.text_field :password_digest %>
+      <%= f.label :password %>
+      <%= f.text_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.text_field :password_confirmation %>
     </div>
 
     <div class="field">
