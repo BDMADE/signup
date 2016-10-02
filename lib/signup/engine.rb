@@ -6,5 +6,8 @@ module Signup
       g.assets false
     end
 
+    require 'rubygems'
+    require 'bcrypt'
+
   end
 end
