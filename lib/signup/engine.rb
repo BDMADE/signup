@@ -5,9 +5,5 @@ module Signup
     config.generators do |g|
       g.assets false
     end
-
-    require 'rubygems'
-    require 'bcrypt'
-
   end
 end
