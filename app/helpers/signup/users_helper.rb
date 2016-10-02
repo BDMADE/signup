@@ -52,7 +52,7 @@ module Signup
     # if current user is not admin, it redirect to root path
     def go_back_if_not_admin
       if not admin?
-        redirect_to root_path, notice: "You do not have any permission to grant this page !"
+        redirect_to user_path(current_user), notice: "You do not have any permission to grant this page !"
       end
     end
 

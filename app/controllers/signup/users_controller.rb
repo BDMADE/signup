@@ -2,7 +2,9 @@ require_dependency "signup/application_controller"
 
 module Signup
   class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_user, :match_user, only: [:show, :edit, :update, :destroy]
+    before_action :authorized?, :admin?, except: [:signup, :create]
+    before_action :go_back_if_not_admin , except: [:signup,:create,:edit,:show,:update]
 
     # GET /users
     def index
@@ -54,7 +56,7 @@ module Signup
       if current_user.nil?
         @user = User.new
       else
-        redirect_to root_url ,alert: 'Already signed in !'
+        redirect_to user_path(current_user) ,alert: 'Already signed in !'
       end
     end
 
@@ -71,13 +73,12 @@ module Signup
     # it matches current user with database and prevents to edit/update other user profile
     def match_user
       if not admin?
-        user= User.find(current_user)
+        user = User.find(current_user)
 
-        if not user.id==set_user.id
-          redirect_to admin_url,notice: 'You have not permission to grant this page !'
+        if not user.id == set_user.id
+          redirect_to user_path(current_user),notice: 'You have not permission to grant this page !'
         end
       end
-
     end
 
   end
