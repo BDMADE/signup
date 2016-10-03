@@ -31,4 +31,9 @@
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
+
+<% if admin? %>
 <%= link_to 'Back', users_path %>
+  <% else %>
+  <%= link_to 'Back', main_app.root_path %>
+<% end %>

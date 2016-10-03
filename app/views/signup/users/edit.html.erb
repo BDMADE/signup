@@ -3,4 +3,9 @@
 <%= render 'form', user: @user %>
 
 <%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+
+<% if admin? %>
+  <%= link_to 'Back', users_path %>
+<% else %>
+  <%= link_to 'Back', main_app.root_path %>
+<% end %>
