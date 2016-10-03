@@ -76,7 +76,7 @@ module Signup
         user = User.find(current_user)
 
         if not user.id == set_user.id
-          redirect_to user_path(current_user),notice: 'You have not permission to grant this page !'
+          redirect_to user_path(current_user),notice: 'You do not have any permission to grant this page !'
         end
       end
     end

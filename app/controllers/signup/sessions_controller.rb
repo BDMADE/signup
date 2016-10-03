@@ -1,4 +1,4 @@
-require_dependency "signup/application_controller"
+require_dependency 'signup/application_controller'
 
 module Signup
   class SessionsController < ApplicationController
@@ -20,7 +20,7 @@ module Signup
 
     def destroy
       log_out if logged_in?
-      redirect_to login_path
+      redirect_to signup.login_path
     end
   end
 end
