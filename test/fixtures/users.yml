@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  firstname: Rails
+  lastname: Admin
+  email: admin@signup.com
+  password_digest: <%= User.digest('password') %>
+  remember_digest: <%= User.digest('remember') %>
+  admin: true
+
+two:
+  firstname: Tanbir
+  lastname: Hasan
+  email: t@h.com
+  password_digest: <%= User.digest('password') %>
+  remember_digest: <%= User.digest('remember') %>
+  admin: false
