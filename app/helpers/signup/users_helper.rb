@@ -46,7 +46,11 @@ module Signup
 
     # check the current user- is it admin ?
      def admin?
+       if current_user.nil?
+       redirect_to use_route: :login
+       else
        current_user.admin?
+       end
      end
 
     # if current user is not admin, it redirect to root path
@@ -60,7 +64,7 @@ module Signup
     ## before_action :authorized?, except: :index
     def authorized?
       if current_user.nil?
-        redirect_to signup.login_path, alert: 'Not authorized! Please log in.'
+        redirect_to use_route: :login
       end
     end
   end

@@ -4,7 +4,7 @@ module Signup
   class UsersController < ApplicationController
     before_action :set_user, :match_user, only: [:show, :edit, :update, :destroy]
     before_action :authorized?, :admin?, except: [:signup, :create]
-    before_action :go_back_if_not_admin , except: [:signup,:create,:edit,:show,:update]
+    before_action :go_back_if_not_admin, except: [:signup, :create, :edit, :show, :update]
 
     # GET /users
     def index
@@ -32,35 +32,39 @@ module Signup
         log_in @user
         redirect_to @user, notice: 'User was successfully created.'
       else
-        render :new
+        if current_user.nil?
+          render :signup
+        else
+          render :new
+        end
       end
     end
 
-    # PATCH/PUT /users/1
-    def update
-      if @user.update(user_params)
-        redirect_to @user, notice: 'User was successfully updated.'
-      else
-        render :edit
+      # PATCH/PUT /users/1
+      def update
+        if @user.update(user_params)
+          redirect_to @user, notice: 'User was successfully updated.'
+        else
+          render :edit
+        end
       end
-    end
 
-    # DELETE /users/1
-    def destroy
-      @user.destroy
-      redirect_to users_url, notice: 'User was successfully destroyed.'
-    end
-
-    # sign up page
-    def signup
-      if current_user.nil?
-        @user = User.new
-      else
-        redirect_to user_path(current_user) ,alert: 'Already signed in !'
+      # DELETE /users/1
+      def destroy
+        @user.destroy
+        redirect_to users_url, notice: 'User was successfully destroyed.'
       end
-    end
 
-    private
+      # sign up page
+      def signup
+        if current_user.nil?
+          @user = User.new
+        else
+          redirect_to user_path(current_user), alert: 'Already signed in !'
+        end
+      end
+
+      private
       # Use callbacks to share common setup or constraints between actions.
       def set_user
         @user = User.find(params[:id])
@@ -70,16 +74,17 @@ module Signup
       def user_params
         params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :admin)
       end
-    # it matches current user with database and prevents to edit/update other user profile
-    def match_user
-      if not admin?
-        user = User.find(current_user)
 
-        if not user.id == set_user.id
-          redirect_to user_path(current_user),notice: 'You do not have any permission to grant this page !'
+      # it matches current user with database and prevents to edit/update other user profile
+      def match_user
+        if not admin?
+          user = User.find(current_user)
+
+          if not user.id == set_user.id
+            redirect_to user_path(current_user), notice: 'You do not have any permission to grant this page !'
+          end
         end
       end
-    end
 
+    end
   end
-end
