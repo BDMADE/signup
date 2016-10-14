@@ -16,27 +16,27 @@
 
     <div class="field">
       <%= f.label :firstname %>
-      <%= f.text_field :firstname %>
+      <%= f.text_field :firstname, required: 'require'  %>
     </div>
 
     <div class="field">
       <%= f.label :lastname %>
-      <%= f.text_field :lastname %>
+      <%= f.text_field :lastname, required: 'require'  %>
     </div>
 
     <div class="field">
       <%= f.label :email %>
-      <%= f.text_field :email %>
+      <%= f.email_field :email, required: 'require'  %>
     </div>
 
     <div class="field">
       <%= f.label :password %>
-      <%= f.text_field :password %>
+      <%= f.password_field :password, required: 'require'  %>
     </div>
 
     <div class="field">
       <%= f.label :password_confirmation %>
-      <%= f.text_field :password_confirmation %>
+      <%= f.password_field :password_confirmation, required: 'require'  %>
     </div>
 
     <div class="field">

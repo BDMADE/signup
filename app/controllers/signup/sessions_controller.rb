@@ -3,6 +3,9 @@ require_dependency 'signup/application_controller'
 module Signup
   class SessionsController < ApplicationController
     def new
+      if logged_in?
+        redirect_to main_app.root_path
+      end
     end
 
     def create
