@@ -46,16 +46,12 @@ module Signup
 
     # check the current user- is it admin ?
      def admin?
-       if current_user.nil?
-       redirect_to use_route: :login
-       else
        current_user.admin?
-       end
      end
 
     # if current user is not admin, it redirect to root path
     def go_back_if_not_admin
-      if not admin?
+      unless admin?
         # redirect_to user_path(current_user), notice: "You do not have any permission to grant this page !"
         redirect_to main_app.root_path, notice: 'You do not have any permission to grant this page !'
       end
@@ -64,7 +60,7 @@ module Signup
     ## before_action :authorized?, except: :index
     def authorized?
       if current_user.nil?
-        redirect_to use_route: :login
+        redirect_to signup.login_path, notice: 'You have to login at first'
       end
     end
   end
