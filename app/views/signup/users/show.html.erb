@@ -15,20 +15,12 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<p>
-  <strong>Remember digest:</strong>
-  <%= @user.remember_digest %>
-</p>
-
+<% if admin? %>
 <p>
   <strong>Admin:</strong>
   <%= @user.admin %>
 </p>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 
