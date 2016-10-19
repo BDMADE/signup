@@ -60,7 +60,7 @@ module Signup
         if current_user.nil?
           @user = User.new
         else
-          redirect_to user_path(current_user), alert: 'Already signed in !'
+          redirect_to user_path(current_user), alert: 'Already signed up !'
         end
       end
 
