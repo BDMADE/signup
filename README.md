@@ -1,8 +1,5 @@
 # Signup
-Short description and motivation.
-
-## Usage
-How to use my plugin.
+It is a simple but very powerful authentication and authorization plug-ins for rails.
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -19,6 +16,23 @@ $ bundle
 Or install it yourself as:
 ```bash
 $ gem install signup
+```
+
+## Usage
+Follow the step to install this plugins:
+
+**Step 1:**
+For installing signup migration:
+
+```
+rails signup:install:migrations
+```
+
+**Step 2:**
+Database migrate
+
+```
+rake db:migrate
 ```
 
 ## Contributing
