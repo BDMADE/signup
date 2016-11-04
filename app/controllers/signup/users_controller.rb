@@ -1,4 +1,4 @@
-require_dependency "signup/application_controller"
+require_dependency 'signup/application_controller'
 
 module Signup
   class UsersController < ApplicationController

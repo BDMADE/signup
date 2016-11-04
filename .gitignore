@@ -6,8 +6,5 @@ spec/signup_app/db/*.sqlite3-journal
 spec/signup_app/log/*.log
 spec/signup_app/tmp/
 spec/signup_app/
-spec/
-
-.idea/vcs.xml
-.idea/
+/spec/
 /.idea/
