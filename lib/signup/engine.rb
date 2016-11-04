@@ -19,5 +19,4 @@ module Signup
       end
     end
   end
-
 end

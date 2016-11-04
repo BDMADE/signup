@@ -1,4 +1,4 @@
-require_dependency 'signup/application_controller'
+require_dependency "signup/application_controller"
 
 module Signup
   class UsersController < ApplicationController
@@ -77,10 +77,10 @@ module Signup
 
       # it matches current user with database and prevents to edit/update other user profile
       def match_user
-        if not admin?
+        unless admin?
           user = User.find(current_user)
 
-          if not user.id == set_user.id
+          unless user.id == set_user.id
             redirect_to user_path(current_user), notice: 'You do not have any permission to grant this page !'
           end
         end

@@ -2,7 +2,7 @@
 It is a simple but very powerful authentication and authorization plug-ins for rails.
 
 ## Installation
-Add this line to your application's Gemfile:
+**Step 1:** Add this line to your application's Gemfile:
 
 ```ruby
 gem 'signup'
@@ -18,25 +18,39 @@ Or install it yourself as:
 $ gem install signup
 ```
 
-## Usage
 Follow the step to install this plugins:
 
-**Step 1:**
+**Step 2:**
 For installing signup migration:
 
 ```
-rails signup:install:migrations
+rake signup:install
 ```
 
-**Step 2:**
-Database migrate
+**Step 3:**
+Mount route, open config-> routes.rb and write below code:
 
 ```
-rake db:migrate
+mount Signup::Engine, at: '/'
 ```
+**Step 4:**
+Add style sheet in app->assets->stylesheets->application.css
+
+```
+*= require signup
+```
+
+## Usage
+From your controller, just use:
+
+```
+before_action :authorized?
+```
+
+This will prevent guest user to enter in your view.
 
 ## Contributing
-Contribution directions go here.
+If you find any issue, please inform us in our [github project repo](https://github.com/bdmade/signup)
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
