@@ -40,6 +40,14 @@ Add style sheet in app->assets->stylesheets->application.css
 *= require signup
 ```
 
+**Step 5:**
+Add this in your project application controller
+
+```
+include Signup::UsersHelper
+```
+
+
 ## Usage
 From your controller, just use:
 
@@ -48,6 +56,11 @@ before_action :authorized?
 ```
 
 This will prevent guest user to enter in your view.
+
+## Administrator
+Username: admin@signup.com
+
+Password: secret
 
 ## Contributing
 If you find any issue, please inform us in our [github project repo](https://github.com/bdmade/signup)
