@@ -46,16 +46,16 @@
         </div>
 
         <% if current_user.admin? %>
-            <div class="field">
-              <%= f.label :admin %>
-              <%= f.check_box :admin, class: 'form-control' %>
-            </div>
+            <%= f.label :admin, class: 'checkbox inline' do %>
+                <%= f.check_box :admin %>
+                <span>Administrator</span>
+            <% end %>
         <% else %>
             <%= f.hidden_field :admin, value: 0, required: 'required' %>
         <% end %>
 
         <div class="actions">
-          <%= f.submit 'Create new account', class: 'btn btn-primary'%>
+          <%= f.submit 'Create new account', class: 'btn btn-primary' %>
         </div>
     <% end %>
   </div>

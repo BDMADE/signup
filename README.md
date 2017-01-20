@@ -24,7 +24,7 @@ Follow the step to install this plugins:
 For installing signup migration:
 
 ```
-rake signup:install
+$ bundle exec rake signup:install
 ```
 
 **Step 3:**
@@ -32,12 +32,6 @@ Mount route, open config-> routes.rb and write below code:
 
 ```
 mount Signup::Engine, at: '/'
-```
-**Step 4:**
-Add style sheet in app->assets->stylesheets->application.css
-
-```
-*= require signup
 ```
 
 ## Usage
@@ -53,6 +47,20 @@ This will prevent guest user to enter in your view.
 Username: admin@signup.com
 
 Password: secret
+
+## Advanced 
+ Make a dashboard under admin namespace in your project folder as like this code:
+ 
+ ```
+ $ rails g contoller admin/dashboard index
+ ```
+ And configure in your project routes as like:
+ ```
+ namespace :admin do
+     get 'dashboard', to:'dashboard#index'
+ end
+ ```
+For this, it will redirect dashboard after sign in.
 
 ## Contributing
 If you find any issue, please inform us in our [github project repo](https://github.com/bdmade/signup)

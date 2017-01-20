@@ -30,7 +30,13 @@ module Signup
 
       if @user.save
         log_in @user
-        redirect_to @user, notice: 'User was successfully created.'
+
+        if (main_app.admin_dashboard_path)
+          redirect_to main_app.admin_dashboard_path, notice: 'User was successfully created.'
+        else
+          redirect_to @user, notice: 'User was successfully created.'
+        end
+
       else
         if current_user.nil?
           render :signup
@@ -40,51 +46,51 @@ module Signup
       end
     end
 
-      # PATCH/PUT /users/1
-      def update
-        if @user.update(user_params)
-          redirect_to @user, notice: 'User was successfully updated.'
-        else
-          render :edit
-        end
+    # PATCH/PUT /users/1
+    def update
+      if @user.update(user_params)
+        redirect_to @user, notice: 'User was successfully updated.'
+      else
+        render :edit
       end
-
-      # DELETE /users/1
-      def destroy
-        @user.destroy
-        redirect_to users_url, notice: 'User was successfully destroyed.'
-      end
-
-      # sign up page
-      def signup
-        if current_user.nil?
-          @user = User.new
-        else
-          redirect_to user_path(current_user), alert: 'Already signed up !'
-        end
-      end
-
-      private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_user
-        @user = User.find(params[:id])
-      end
-
-      # Only allow a trusted parameter "white list" through.
-      def user_params
-        params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :admin)
-      end
-
-      # it matches current user with database and prevents to edit/update other user profile
-      def match_user
-        unless admin?
-          user = User.find(current_user)
-
-          unless user.id == set_user.id
-            redirect_to user_path(current_user), notice: 'You do not have any permission to grant this page !'
-          end
-        end
-      end
-
     end
+
+    # DELETE /users/1
+    def destroy
+      @user.destroy
+      redirect_to users_url, notice: 'User was successfully destroyed.'
+    end
+
+    # sign up page
+    def signup
+      if current_user.nil?
+        @user = User.new
+      else
+        redirect_to user_path(current_user), alert: 'Already signed up !'
+      end
+    end
+
+    private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def user_params
+      params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :admin)
+    end
+
+    # it matches current user with database and prevents to edit/update other user profile
+    def match_user
+      unless admin?
+        user = User.find(current_user)
+
+        unless user.id == set_user.id
+          redirect_to user_path(current_user), notice: 'You do not have any permission to grant this page !'
+        end
+      end
+    end
+
   end
+end

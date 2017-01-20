@@ -13,7 +13,11 @@ module Signup
       if user && user.authenticate(params[:session][:password])
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        redirect_to user, notice: 'logged in !'
+        if (main_app.admin_dashboard_path)
+          redirect_to main_app.admin_dashboard_path, notice: 'logged in !'
+        else
+          redirect_to user, notice: 'logged in !'
+        end
       else
         flash.now[:danger] = 'Invalid email/password combination' # Not quite right!
         render 'new'

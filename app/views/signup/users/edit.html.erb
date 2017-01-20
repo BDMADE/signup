@@ -1,11 +1,20 @@
 <h1>Editing User</h1>
 
 <%= render 'form', user: @user %>
+<br/>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
 
-<%= link_to 'Show', @user %> |
+    <%= link_to 'Show', @user, class: 'btn btn-info' %> |
 
-<% if admin? %>
-  <%= link_to 'Back', users_path %>
-<% else %>
-  <%= link_to 'Back', main_app.root_path %>
-<% end %>
+    <% if admin? %>
+        <%= link_to 'Back', users_path, class: 'btn btn-primary' %>
+    <% else %>
+        <% if main_app.admin_dashboard_path %>
+            <%= link_to 'Back', main_app.admin_dashboard_path, class: 'btn btn-primary' %>
+        <% else %>
+            <%= link_to 'Back', main_app.root_path, class: 'btn btn-primary' %>
+        <% end %>
+    <% end %>
+  </div>
+</div>
