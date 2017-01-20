@@ -40,14 +40,6 @@ Add style sheet in app->assets->stylesheets->application.css
 *= require signup
 ```
 
-**Step 5:**
-Add this in your project application controller
-
-```
-include Signup::UsersHelper
-```
-
-
 ## Usage
 From your controller, just use:
 
