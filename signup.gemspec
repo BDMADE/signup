@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.2.2'
   s.add_dependency 'rails', '~> 5.0.0', '>= 5.0.0.1'
+  s.add_dependency 'bcrypt', '~> 3.1', '>= 3.1.11'
 
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'bcrypt'

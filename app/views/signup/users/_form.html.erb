@@ -1,0 +1,62 @@
+<% provide(:title, 'Sign up') %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= render partial: 'signup/shared/flash_notice' %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(user) do |f| %>
+
+        <% if user.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+              <ul>
+                <% user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :firstname %>
+          <%= f.text_field :firstname, required: 'require', class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :lastname %>
+          <%= f.text_field :lastname, required: 'require', class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email, required: 'require', class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %>
+          <%= f.password_field :password, required: 'require', class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, required: 'require', class: 'form-control' %>
+        </div>
+
+        <% if current_user.admin? %>
+            <div class="field">
+              <%= f.label :admin %>
+              <%= f.check_box :admin, class: 'form-control' %>
+            </div>
+        <% else %>
+            <%= f.hidden_field :admin, value: 0, required: 'required' %>
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit 'Create new account', class: 'btn btn-primary'%>
+        </div>
+    <% end %>
+  </div>
+</div>
